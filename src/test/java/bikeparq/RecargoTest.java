@@ -8,6 +8,16 @@ import org.junit.jupiter.api.Test;
 class RecargoTest {
 
     @Test
+    void horaFueraDeRangoLanzaErrorInclusoConTarifaCero() {
+        for (int hora : new int[]{-1, 24}) {
+            assertThrows(IllegalArgumentException.class,
+                    () -> Recargo.aplicarRecargoNocturno(3000, hora));
+            assertThrows(IllegalArgumentException.class,
+                    () -> Recargo.aplicarRecargoNocturno(0, hora));
+        }
+    }
+
+    @Test
     void tarifaCeroNoPagaRecargoDeNoche() {
         assertEquals(0, Recargo.aplicarRecargoNocturno(0, 23));
         assertEquals(0, Recargo.aplicarRecargoNocturno(0, 5));
