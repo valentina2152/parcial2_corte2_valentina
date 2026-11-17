@@ -29,4 +29,21 @@ public class PasosCobro {
     }
 
     // PUNTO 3: agregue aquí los pasos de sus escenarios del recargo nocturno.
+    private int tarifa;
+    private int total;
+
+    @Given("una tarifa de {int} pesos")
+    public void unaTarifaDe(int tarifa) {
+        this.tarifa = tarifa;
+    }
+
+    @When("el vehículo entró a las {int} horas")
+    public void elVehiculoEntroALas(int hora) {
+        total = Recargo.aplicarRecargoNocturno(tarifa, hora);
+    }
+
+    @Then("el total a pagar es de {int} pesos")
+    public void elTotalAPagarEsDe(int esperado) {
+        assertEquals(esperado, total);
+    }
 }
