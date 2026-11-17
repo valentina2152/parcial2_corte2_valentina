@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 class RecargoTest {
 
     @Test
+    void tarifaCeroNoPagaRecargoDeNoche() {
+        assertEquals(0, Recargo.aplicarRecargoNocturno(0, 23));
+        assertEquals(0, Recargo.aplicarRecargoNocturno(0, 5));
+    }
+
+    @Test
     void diaNoCambiaTarifaIncluidosLosLimites() {
         for (int hora : new int[]{6, 10, 19}) {
             assertEquals(3000, Recargo.aplicarRecargoNocturno(3000, hora));
